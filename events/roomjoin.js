@@ -15,9 +15,9 @@ module.exports = function (bot) {
             logger('Info', 'INIT', 'data loaded for ' + botUser.username + '\n ' + JSON.stringify(botUser, null, 2));
         }
 
-        if (lang.botConnect !== "") {
+		if(config.welcome){
 			sendChat(lang.botConnect, {botname: config.botName});
-        }
+		}
 
 		setTimeout(function () {
 			bot.getUsers().forEach(function (user) {
