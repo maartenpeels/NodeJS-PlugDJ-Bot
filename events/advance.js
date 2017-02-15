@@ -25,6 +25,8 @@ module.exports = function (bot) {
 			}
 		});
 
+		runCommand('opcheck');
+
 		bot.getHistory(function (history) {
 			bot.mediaHistory = history;
 		});

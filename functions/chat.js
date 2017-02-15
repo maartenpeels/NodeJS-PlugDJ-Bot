@@ -1,4 +1,20 @@
 module.exports = function () {
+	runCommand = function (name) {
+		var command = commands.filter(function (cmd) {
+			var found = false;
+			for (i = 0; i < cmd.names.length; i++) {
+				if (!found) {
+					found = (cmd.names[i] == name);
+				}
+			}
+			return found;
+		})[0];
+
+		if (command && command.enabled) {
+			command.handler(name);
+		}
+	};
+
 	handleCommand = function (data) {
         if (data.from === undefined) {
             return;

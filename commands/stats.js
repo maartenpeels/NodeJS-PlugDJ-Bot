@@ -1,4 +1,4 @@
-exports.names = ['boothstats'];
+exports.names = ['boothstats', 'stats'];
 exports.hidden = false;
 exports.enabled = true;
 exports.cdAll = 30;
