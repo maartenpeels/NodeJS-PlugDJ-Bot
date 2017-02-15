@@ -74,8 +74,17 @@ module.exports = function () {
         }
     };
 
-	sendChat()
-	{
+	sendChat = function (msg, args) {
+		if(args === 'undefined' || args == null)
+		{
+			bot.sendChat(msg);
+			return;
+		}
 
-	}
-}
+		for(var key in args)
+		{
+			msg = msg.replace(config.chatLiteral + key.toLowerCase() + config.chatLiteral, args[key]);
+		}
+		bot.sendChat(msg);
+	};
+};

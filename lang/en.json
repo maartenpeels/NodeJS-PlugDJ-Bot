@@ -1,15 +1,17 @@
 {
-	"botConnect": "{botname} is running!",
-	"notAvailable": "@{username}, skipping this video because it is not available or embeddable. Please update your playlist!",
-	"songStuck": "Skipping {mediaName} because it appears to be stuck...",
-	"songBanned": "Skipping {mediaName} because it is banned... @{username}, please don't play this song again!",
-	"boothstats": "{total_songs} songs({unique_songs} unique) have been played by {total_djs} dj's with a total of {positive} woots, {negative} mehs and {grabs} grabs!",
+	"botConnect": "#botname# is running!",
+	"notAvailable": "@#username#, skipping this video because it is not available or embeddable. Please update your playlist!",
+	"songStuck": "Skipping #medianame# because it appears to be stuck...",
+	"songBanned": "Skipping #medianame# because it is banned... @#username#, please don't play this song again!",
+	"songBlacklisted": "@#username#, the song \"#author# - #title#\" has been blacklisted, reason: \"#reason#\".",
+	"songOutOfRange": "@#username#, the song \"#author# - #title#\" has been marked out of range (released in #notes#).",
+	"boothstats": "#total_songs# songs(#unique_songs# unique) have been played by #total_djs# dj's with a total of #positive# woots, #negative# mehs and #grabs# grabs!",
 	"opcheck": {
 		"notPlayed": "This song has not been played here in my lifetime.",
-		"isPlayed": "This song has been played {amount} time{extra} in my lifetime, last time being {date}({from})"
+		"isPlayed": "I have seen this song #amount# time#extra# since i'm alive, last time being #from#(#date#)"
 	},
 	"welcome": {
-		"newUser": ":wave: Welcome, @{username}!",
-		"oldUser": ":wave: Welcome back, @{username}!"
+		"newUser": ":wave: Welcome, @#username#!",
+		"oldUser": ":wave: Welcome back, @#username#!"
 	}
 }

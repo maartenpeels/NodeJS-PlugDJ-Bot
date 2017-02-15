@@ -16,7 +16,7 @@ module.exports = function (bot) {
         }
 
         if (lang.botConnect !== "") {
-            bot.sendChat(lang.botConnect.replace('{botname}', config.roomName));
+			sendChat(lang.botConnect, {botname: config.botName});
         }
 
 		setTimeout(function () {

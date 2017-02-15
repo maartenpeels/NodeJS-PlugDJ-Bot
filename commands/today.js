@@ -14,6 +14,6 @@ exports.handler = function (data) {
         if (!error && response.statusCode === 200) {
             result = body;
         }
-        bot.sendChat(result);
+		sendChat(result);
     });
 };

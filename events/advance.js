@@ -16,8 +16,10 @@ module.exports = function (bot) {
 			{
 				if(row.is_banned)
 				{
-					var message = lang.songBanned.replace('{mediaName}', data.media.author + ' - ' + data.media.title).replace('{username}', data.currentDJ.username);
-					bot.sendChat(message);
+					sendChat(lang.songBanned, {
+							medianame: data.media.author + ' - ' + data.media.title,
+						 	username: data.currentDJ.username
+						});
 					bot.moderateForceSkip();
 				}
 			}
@@ -38,8 +40,7 @@ module.exports = function (bot) {
         if (config.queue.skipStuckSongs) {
             skipTimer = setTimeout(function () {
                 if (bot.getMedia() && bot.getMedia().id == data.media.id) {
-                    var message = lang.songStuck.replace('{mediaName}', data.media.name);
-                    bot.sendChat(message);
+					sendChat(lang.songStuck, {medianame: data.media.name});
                     bot.moderateForceSkip();
                 }
             }, (nextTimerDelay));

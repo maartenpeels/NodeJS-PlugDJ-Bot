@@ -15,13 +15,14 @@ exports.handler = function (data) {
 			rows = result.rows;
 
             if (rows && rows.length > 0) {
-				bot.sendChat(lang.opcheck.isPlayed
-					.replace('{amount}', result.count)
-					.replace('{extra}', (result.count !=1 ) ? "s" : "")
-					.replace('{date}', moment.utc(rows[0]['played_at']).calendar())
-					.replace('{from}', moment.utc(rows[0]['played_at']).fromNow()));
+				sendChat(lang.opcheck.isPlayed, {
+					amount: result.count,
+					extra: (result.count !=1 ) ? "s" : "",
+					date: moment.utc(rows[0]['played_at']).calendar(),
+					from: moment.utc(rows[0]['played_at']).fromNow()
+				});
             } else {
-                bot.sendChat(lang.opcheck.notPlayed);
+				sendChat(lang.opcheck.notPlayed);
             }
         });
 	}

@@ -20,7 +20,7 @@ module.exports = function (bot) {
 
 					if (config.welcomeNewUsers) {
                         setTimeout(function () {
-                            bot.sendChat(message)
+							sendChat(message);
                         }, 5000);
                     }
 				}
