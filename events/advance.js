@@ -1,0 +1,72 @@
+module.exports = function (bot) {
+	logger('Info', 'LOADER', 'initialized djAdvance event');
+    bot.on('advance', function (data) {
+		if(data.media == undefined){
+			return;
+		}
+
+		if (config.verboseLogging) {
+			logger('Info', 'EVENT', 'advance: ' + JSON.stringify(data, null, 2));
+        } else {
+            logger('Info', 'EVENT', 'advance, now playing: ' + data.media.author + ' - ' + data.media.title);
+        }
+
+		getDbSongFromInfo(data.media.id.toString(), function(row) {
+			if(row != null)
+			{
+				if(row.is_banned)
+				{
+					var message = lang.songBanned.replace('{mediaName}', data.media.author + ' - ' + data.media.title).replace('{username}', data.currentDJ.username);
+					bot.sendChat(message);
+					bot.moderateForceSkip();
+				}
+			}
+		});
+
+		bot.getHistory(function (history) {
+			bot.mediaHistory = history;
+		});
+
+		saveLastSong(data.lastPlay);
+
+		bot.woot();
+
+		if (typeof skipTimer !== 'undefined') {
+            clearTimeout(skipTimer);
+        }
+        var nextTimerDelay = (data.media.duration + 10) * 1000;
+        if (config.queue.skipStuckSongs) {
+            skipTimer = setTimeout(function () {
+                if (bot.getMedia() && bot.getMedia().id == data.media.id) {
+                    var message = lang.songStuck.replace('{mediaName}', data.media.name);
+                    bot.sendChat(message);
+                    bot.moderateForceSkip();
+                }
+            }, (nextTimerDelay));
+        }
+
+		var songData = {
+            site: config.site,
+            site_id: data.media.id.toString(),
+            author: data.media.author,
+            title: data.media.title,
+            host: data.media.format,
+            host_id: data.media.cid,
+            duration: data.media.duration,
+            image: data.media.image
+        };
+
+		models.Song.findOrCreate({
+            where: {site: config.site, host: data.media.format, host_id: data.media.cid},
+            defaults: songData
+        }).catch(function (err) {
+			if (config.verboseLogging) {
+				logger('Error', 'EVENT', 'error saving song: ' + err.stack + JSON.stringify(data, null, 2));
+	        } else {
+	            logger('Error', 'EVENT', 'error saving song');
+	        }
+        });
+
+		saveWaitList(true);
+	});
+};

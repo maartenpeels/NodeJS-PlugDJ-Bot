@@ -1,0 +1,26 @@
+{
+	"lang": "en",
+	"roomName": "",
+	"superAdmin": "",
+	"site": "plug",
+	"verboseLogging": false,
+	"welcomeNewUsers": true,
+	"commandLiteral": "!",
+	"removeCommands": true,
+	"queue": {
+		"skipStuckSongs": true
+	},
+	"auth": {
+	  "username": "",
+	  "password": ""
+	},
+	"db": {
+	    "dialect": "mssql",
+	    "host": "localhost",
+	    "port": "3306",
+	    "username": "sa",
+	    "password": "",
+	    "database": "",
+	    "forceSequelizeSync": false
+	}
+}

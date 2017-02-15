@@ -1,0 +1,29 @@
+{
+  "name": "plugbot",
+  "version": "1.0.0",
+  "description": "A bot for Plug.DJ",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maarten Peels",
+  "dependencies": {
+    "jethro": "^4.3.2",
+    "plugapi": "5.0.0-beta.1",
+    "require-reload": "*",
+    "sequelize": "*",
+	"request": "*",
+	"moment": "*",
+	"tedious": "*",
+    "string": "*",
+    "underscore": "git://github.com/jashkenas/underscore.git",
+	"youtube-api": "*"
+  },
+  "devDependencies": {
+    "sqlite3": "*"
+  },
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "license": "ISC"
+}
