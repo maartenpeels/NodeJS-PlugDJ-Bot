@@ -31,4 +31,9 @@ module.exports = function (options)
     };
 
     uptime = new Date();
+
+	if(config.showRestLogging){
+		logger('Info', 'REST', 'starting server')
+	}
+	require('./rest/server');
 };

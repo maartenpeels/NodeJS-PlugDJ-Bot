@@ -7,6 +7,10 @@
 	"songOutOfRange": "@#username#, the song \"#author# - #title#\" has been marked out of range (released in #notes#).",
 	"boothstats": "#total_songs# songs(#unique_songs# unique) have been played by #total_djs# dj's with a total of #positive# woots, #negative# mehs and #grabs# grabs!",
 	"userStats": "@#username#, you've played #total_songs# songs of which there are #unique_songs# unique! A total of #positive# woots, #negative# mehs and #grabs# grabs were given!",
+	"reloadedConfigAndCommands": ":robot_face: commands and config reloaded, @#username#!",
+	"rest": {
+		"infoLink": "https://github.com/maartenpeels/NodeJS-PlugDJ-Bot/wiki"
+	},
 	"opcheck": {
 		"notPlayed": "I have never seen this song in my life!",
 		"isPlayed": "I have seen this song #amount# time#extra# since i'm alive, last time being #from#(#date#)"

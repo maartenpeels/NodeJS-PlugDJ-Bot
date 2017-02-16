@@ -1,6 +1,7 @@
 {
   "name": "plugbot",
   "version": "1.0.0",
+  "restVersion": "1.0",
   "description": "A bot for Plug.DJ",
   "main": "bot.js",
   "scripts": {
@@ -13,7 +14,9 @@
     "require-reload": "*",
     "sequelize": "*",
 	"request": "*",
+	"express": "*",
 	"moment": "*",
+	"body-parser": "*",
 	"tedious": "*",
     "string": "*",
     "underscore": "git://github.com/jashkenas/underscore.git",
