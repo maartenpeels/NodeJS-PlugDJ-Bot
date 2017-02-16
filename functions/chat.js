@@ -93,7 +93,11 @@ module.exports = function () {
 	sendChat = function (msg, args) {
 		if(args === 'undefined' || args == null)
 		{
-			bot.sendChat(msg);
+			if(config.silentMode){
+				logger('SilentMode', 'CHAT', msg);
+			}else{
+				bot.sendChat(msg);
+			}
 			return;
 		}
 
@@ -101,6 +105,11 @@ module.exports = function () {
 		{
 			msg = msg.replace(config.chatLiteral + key.toLowerCase() + config.chatLiteral, args[key]);
 		}
-		bot.sendChat(msg);
+
+		if(config.silentMode){
+			logger('SilentMode', 'CHAT', msg);
+		}else{
+			bot.sendChat(msg);
+		}
 	};
 };

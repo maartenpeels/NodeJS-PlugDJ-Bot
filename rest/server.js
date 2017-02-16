@@ -26,43 +26,18 @@ router.get('/', function(req, res) {
  	});
 });
 
-router.route('/users')
-	.get(function(req, res) {
-		models.User.findAll().then(function (result) {
-			if(!result)
-				res.json({
-					message: 'Whoops! Something went wrong executing your request..'
-				});
-
-			res.json(result);
-		});
-	});
-
-router.route('/songs')
-	.get(function(req, res) {
-		models.Song.findAll().then(function (result) {
-			if(!result)
-				res.json({
-					message: 'Whoops! Something went wrong executing your request..'
-				});
-
-			res.json(result);
-		});
-	});
-
-router.route('/plays')
-	.get(function(req, res) {
-		models.Play.findAll().then(function (result) {
-			if(!result)
-				res.json({
-					message: 'Whoops! Something went wrong executing your request..'
-				});
-
-			res.json(result);
-		});
-	});
-
 app.use('/api', router);
+
+var userEndpoint = require('./endpoints/users')(express);
+var songEndpoint = require('./endpoints/songs')(express);
+var playEndpoint = require('./endpoints/plays')(express);
+var waitEndpoint = require('./endpoints/waitlist')(express);
+
+app.use('/api', userEndpoint);
+app.use('/api', songEndpoint);
+app.use('/api', playEndpoint);
+
+app.use('/api/live', waitEndpoint);
 
 app.listen(port);
 

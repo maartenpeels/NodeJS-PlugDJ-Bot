@@ -9,18 +9,15 @@ module.exports = function (bot) {
         }
 
 		var newUser = false;
-        var message = "";
 
 		if (data.username !== undefined && data.username !== botUser.username) {
             getDbUserFromSiteUser(data, function (dbUser) {
 				if(dbUser == null)
 				{
 					newUser = true;
-					message = lang.welcome.newUser.replace('{username}', data.username);
-
 					if (config.welcomeNewUsers) {
                         setTimeout(function () {
-							sendChat(message);
+							sendChat(lang.welcome.newUser, {username: data.username});
                         }, 5000);
                     }
 				}
