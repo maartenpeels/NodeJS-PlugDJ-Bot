@@ -8,6 +8,11 @@ module.exports = function (bot) {
         }
 
         if (data.from.username !== undefined && data.from.username !== null) {
+			if(config.saveChat)
+			{
+				addMessageToDB(data);
+			}
+
             data.message = data.message.trim();
             handleCommand(data);
             models.User.update({

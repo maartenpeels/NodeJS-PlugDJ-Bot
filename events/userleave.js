@@ -8,5 +8,7 @@ module.exports = function (bot) {
 
         logger('Info', 'LEAVE', 'user left: ' + data.username);
         models.User.update({last_leave: new Date()}, {where: {site: config.site, site_id: data.id.toString()}});
+
+		saveWaitList(true);
     });
 };
