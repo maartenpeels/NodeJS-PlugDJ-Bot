@@ -69,7 +69,5 @@ module.exports = function (bot) {
 	            logger('Error', 'EVENT', 'error saving song');
 	        }
         });
-
-		saveWaitList(true);
 	});
 };

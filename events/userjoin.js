@@ -16,15 +16,17 @@ module.exports = function (bot) {
 				{
 					newUser = true;
 					if (config.welcomeNewUsers) {
-                        setTimeout(function () {
-							sendChat(lang.welcome.newUser, {username: data.username});
-                        }, 5000);
+						setTimeout(function () {
+							models.User.findAndCountAll({
+					            where: { site: config.site }
+					        }).then(function(result) {
+								sendChat(lang.welcome.newUser, {username: data.username, amount: ordinalSuffix(result.count)});
+							});
+						}, 5000);
                     }
 				}
 				updateDbUser(data);
 			});
 		}
-
-		saveWaitList(true);
 	});
 };

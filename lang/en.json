@@ -16,7 +16,7 @@
 		"isPlayed": "I have seen this song #amount# time#extra# since i'm alive, last time being #from#(#date#)"
 	},
 	"welcome": {
-		"newUser": ":wave: Welcome, @#username#!",
+		"newUser": ":wave: Welcome, @#username#! You are #amount# to join this room!",
 		"oldUser": ":wave: Welcome back, @#username#!"
 	}
 }

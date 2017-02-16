@@ -26,5 +26,6 @@ module.exports = function (bot) {
 		}, 1000);
 
         bot.woot();
+		saveWaitList(true);
     });
 };
