@@ -13,14 +13,13 @@
     "plugapi": "5.0.0-beta.1",
     "require-reload": "*",
     "sequelize": "*",
-	"request": "*",
-	"express": "*",
-	"moment": "*",
-	"body-parser": "*",
-	"tedious": "*",
+  	"request": "*",
+  	"express": "*",
+  	"moment": "*",
+  	"body-parser": "*",
+  	"tedious": "*",
     "string": "*",
-    "underscore": "git://github.com/jashkenas/underscore.git",
-	"youtube-api": "*"
+    "underscore": "git://github.com/jashkenas/underscore.git"
   },
   "devDependencies": {
     "sqlite3": "*"

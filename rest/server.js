@@ -36,8 +36,7 @@ var waitEndpoint = require('./endpoints/waitlist')(express);
 app.use('/api', userEndpoint);
 app.use('/api', songEndpoint);
 app.use('/api', playEndpoint);
-
-app.use('/api/live', waitEndpoint);
+app.use('/api', waitEndpoint);
 
 app.listen(port);
 

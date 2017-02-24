@@ -1,11 +1,16 @@
 {
 	"lang": "en",
 	"roomName": "",
+	"botName": "",
 	"superAdmin": "",
 	"site": "plug",
+	"silentMode": true,
 	"verboseLogging": false,
+	"showRestLogging": true,
+	"welcome": true,
 	"welcomeNewUsers": true,
 	"commandLiteral": "!",
+	"chatLiteral": "#",
 	"removeCommands": true,
 	"queue": {
 		"skipStuckSongs": true

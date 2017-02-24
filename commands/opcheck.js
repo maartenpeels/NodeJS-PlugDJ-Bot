@@ -13,17 +13,27 @@ exports.handler = function (data) {
             order: 'played_at DESC'
         }).then(function(result) {
 			rows = result.rows;
+			if (rows && rows.length > 0) {
+				models.Song.findAll({
+					where: {id: rows[0]['song_id']}
+				}).then(function(song) {
+					extra = "[labeled]";
+					if(song[0]["label"] === 'undefined' || song[0]["label"] == null)
+					{
+						extra = "[unlabeled]";
+					}
 
-            if (rows && rows.length > 0) {
-				sendChat(lang.opcheck.isPlayed, {
-					amount: result.count,
-					extra: (result.count !=1 ) ? "s" : "",
-					date: moment.utc(rows[0]['played_at']).calendar(),
-					from: moment.utc(rows[0]['played_at']).fromNow()
+					sendChat(extra + lang.opcheck.isPlayed, {
+						amount: result.count,
+						extra: (result.count !=1 ) ? "s" : "",
+						date: moment.utc(rows[0]['played_at']).calendar(),
+						from: moment.utc(rows[0]['played_at']).fromNow()
+					});
+
 				});
-            } else {
+			} else {
 				sendChat(lang.opcheck.notPlayed);
-            }
+			}
         });
 	}
 };

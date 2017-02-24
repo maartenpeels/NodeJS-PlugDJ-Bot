@@ -13,10 +13,9 @@
 	},
 	"opcheck": {
 		"notPlayed": "I have never seen this song in my life!",
-		"isPlayed": "I have seen this song #amount# time#extra# since i'm alive, last time being #from#(#date#)"
+		"isPlayed": "[opcheck] This song has been played #amount# time#extra# since i'm alive, last time being #from#(#date#)"
 	},
 	"welcome": {
-		"newUser": ":wave: Welcome, @#username#! You are #amount# to join this room!",
-		"oldUser": ":wave: Welcome back, @#username#!"
+		"newUser": ":wave: Welcome, @#username#! You are #amount# to join this room!"
 	}
 }

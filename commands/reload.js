@@ -9,6 +9,9 @@ exports.handler = function (data) {
     config = reload(dpath.resolve(__dirname, '../config.json'));
     console.log('Loaded config file from ' + dpath.resolve(__dirname, '../config.json'));
 
+	lang = require(dpath.resolve(__dirname, '../lang/'+config.lang+'.json'));
+    console.log('Loaded language file from ' + dpath.resolve(__dirname, 'lang/'+config.lang+'.json'));
+
     loadCommands(bot);
 	sendChat(lang.reloadedConfigAndCommands, {username: data.from.username});
 };

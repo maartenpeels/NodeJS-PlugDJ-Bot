@@ -6,6 +6,7 @@ module.exports = function (sequelize, DataTypes) {
         site_id: {type: DataTypes.STRING, allowNull: false, unique: true},
         author: {type: DataTypes.STRING},
         title: {type: DataTypes.STRING},
+		label: {type: DataTypes.STRING},
         description: {type: DataTypes.TEXT},
         release_date: {type: DataTypes.DATEONLY},
         tags: {type: DataTypes.STRING},
