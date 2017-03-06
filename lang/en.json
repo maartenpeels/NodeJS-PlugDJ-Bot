@@ -12,8 +12,8 @@
 		"infoLink": "https://github.com/maartenpeels/NodeJS-PlugDJ-Bot/wiki"
 	},
 	"opcheck": {
-		"notPlayed": "I have never seen this song in my life!",
-		"isPlayed": "[opcheck] This song has been played #amount# time#extra# since i'm alive, last time being #from#(#date#)"
+		"notPlayed": "[opcheck] No plays found.",
+		"isPlayed": "[opcheck] This song has been played #amount# time#extra#, last time being #from#(#date#)."
 	},
 	"welcome": {
 		"newUser": ":wave: Welcome, @#username#! You are #amount# to join this room!"

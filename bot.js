@@ -64,4 +64,4 @@ function initModules(bot)
 
     loadEvents(bot);
     loadCommands(bot);
-}
+} 

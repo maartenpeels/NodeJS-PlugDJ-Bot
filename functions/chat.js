@@ -16,7 +16,7 @@ module.exports = function () {
 	};
 
 	handleCommand = function (data) {
-        if (data.from === undefined) {
+        if (data.from === undefined || data.from == null || data.from == 'undefined') {
             return;
         }
 
@@ -26,6 +26,7 @@ module.exports = function () {
         data.message = data.message.replace(/&amp;/g, '\&');
         data.message = data.message.replace(/&lt;/gi, '\<');
         data.message = data.message.replace(/&gt;/gi, '\>');
+        data.message = data.message.replace('/me ', '');
 
         if (data.message.charAt(0) === config.commandLiteral) {
             data.message = data.message.substr(1);
@@ -89,6 +90,80 @@ module.exports = function () {
             }
         }
     };
+
+    parseCommandParams = function(message) {
+        var input = message.split(' ');
+        var command = _.first(input).substr(1);
+        var rest = _.rest(input);
+        var params = {};
+        var promises = [];
+        for (var i=arguments.length-1; i>=1; --i) {
+            var param_type = arguments[i];
+            switch (param_type) {
+                case CPARAM.FLOAT:
+                    var d = rest.pop();
+                    var value = parseFloat(d);
+                    logger.info(value);
+                    if (isNaN(value)) {
+                        rest.push(d);
+                    } else {
+                        params[i-1] = value;
+                    }
+                    break;
+
+                case CPARAM.INT:
+                    var d = rest.pop();
+                    var value = parseInt(d);
+                    logger.info(value);
+                    if (isNaN(value)) {
+                        rest.push(d);
+                    } else {
+                        params[i-1] = value;
+                    }
+                    break;
+
+                case CPARAM.USERNAME:
+                    {
+                        var reststr = rest.join(' ');
+                        var at_pos = reststr.lastIndexOf('@');
+                        if (at_pos == -1 && i-1 == 0) {
+                            logger.info('Fallbacking to getting username without @');
+                            at_pos = -1;
+                        }
+                        var username = reststr.substr(at_pos+1);
+                        rest = reststr.substr(0, at_pos).split(' ');
+
+                        var x = function() {
+                            var index = i-1;
+                            promises.push(get_user(username).on('success', function(db_user) {
+                                if (db_user) {
+                                    var user = _.findWhere(bot.getUsers(), {id: db_user.id});
+                                    if (user) {
+                                        params[index] = {user: user, db_user: db_user};
+                                    } else {
+                                        params[index] = {err: 'NOT_IN_ROOM', db_user: db_user};
+                                    }
+                                } else {
+                                    params[index] = {err: 'INVALID_USER'};
+                                }
+                            }));
+                        }();
+                    }
+                    break;
+
+                case CPARAM.STRING:
+                    params[i-1] = rest.pop();
+                    break;
+            }
+        }
+
+        return Promise.settle(promises).then(function() {
+            return {
+                command: command,
+                params: params
+            };
+        });
+    }
 
 	sendChat = function (msg, args) {
 		if(args === 'undefined' || args == null)
