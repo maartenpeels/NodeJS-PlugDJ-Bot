@@ -13,7 +13,7 @@
 	},
 	"opcheck": {
 		"notPlayed": "[opcheck] No plays found.",
-		"isPlayed": "[opcheck] This song has been played #amount# time#extra#, last time being #from#(#date#)."
+		"isPlayed": "[opcheck] This song has been played #amount# time#extra#, Week: #week# Month: #month#, last time being #from#(#date#)."
 	},
 	"welcome": {
 		"newUser": ":wave: Welcome, @#username#! You are #amount# to join this room!"

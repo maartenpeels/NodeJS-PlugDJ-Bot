@@ -23,9 +23,38 @@ exports.handler = function (data) {
 						extra = "[unlabeled]";
 					}
 
+					now = new Date();
+					weekAgo = now - 1000 * 60 * 60 * 24 * 7;
+					weekAgo = new Date(weekAgo);
+
+					monthAgo = now - 1000 * 60 * 60 * 24 * 37;//Aprox
+					monthAgo = new Date(monthAgo);
+
+					startWeek = weekAgo;
+					endWeek = new Date();
+
+					startMonth = monthAgo;
+					endMonth = weekAgo;
+
+					monthCount = 0;
+					weekCount = 0;
+
+					for (var i = rows.length - 1; i >= 0; i--) {
+						playedAt = rows[i]['played_at'];
+						if(playedAt <= endWeek && playedAt > startWeek)
+						{
+							weekCount++
+						}else if(playedAt <= endMonth && playedAt > startMonth)
+						{
+							monthCount++;
+						}
+					}
+
 					sendChat(extra + lang.opcheck.isPlayed, {
 						amount: result.count,
 						extra: (result.count !=1 ) ? "s" : "",
+						week: weekCount,
+						month: monthCount,
 						date: moment.utc(rows[0]['played_at']).calendar(),
 						from: moment.utc(rows[0]['played_at']).fromNow()
 					});
